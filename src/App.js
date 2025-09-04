@@ -17,9 +17,9 @@ export const App = () =>{
 
   return (
     <>
-        <MainWindow hp={hp_1} dispatch={setHp_1}/>
+        <MainWindow hp={hp_1} dispatch={count => console.log(count)}/>
         <Screen text={send} dispatch={()=>setSend('')} />
-        <MainWindow hp={hp_2} dispatch={setHp_2}/>
+        <MainWindow hp={hp_2} dispatch={count => console.log(count)}/>
     </>
   )
 }

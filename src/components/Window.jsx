@@ -18,9 +18,9 @@ export const MainWindow = (hp, dispatch) => {
             setCount(count-1)        
         }
         if (count === 0) {
-            dispatch(true)
+            dispatch(hp + count)
         }
-    },[count])
+    },[hp, count, dispatch])
 
     return (
         <>
