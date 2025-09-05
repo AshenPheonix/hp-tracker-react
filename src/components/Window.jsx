@@ -1,9 +1,14 @@
-import { useEffect, useState } from "react"
+import { use, useEffect, useState } from "react"
+import { useDispatch } from "react-redux"
+import { useSelector } from "react-redux"
+import { dropHp } from "../stores/HpSlice"
 
-export const MainWindow = (hp, dispatch) => {
+export const MainWindow = (player) => {
+    const hp = useSelector(state=>state.hp[player])
+    const dispatcher = useDispatch()
     const [staged, setStaged] = useState(0)
     const [count, setCount] = useState(0)
-    
+
     const setDirection = (dir) =>{
         if(dir === '+'){
             setStaged(staged + 1)
@@ -18,9 +23,13 @@ export const MainWindow = (hp, dispatch) => {
             setCount(count-1)        
         }
         if (count === 0) {
-            dispatch(hp + count)
+            dispatcher(dropHp({
+                who: player,
+                damage: staged
+            }))
+            setStaged(0);
         }
-    },[hp, count, dispatch])
+    },[count, player, dispatcher, staged])
 
     return (
         <>
